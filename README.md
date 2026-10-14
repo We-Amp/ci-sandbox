@@ -6,3 +6,5 @@ secrets. It will be deleted when the proof is recorded.
 
 Layout: `ci.yml` is a thin caller; `pipeline.yml` and `release.yml` are the
 reusable workflows the runner group allows at `refs/heads/main`.
+
+Branch PR probe.
