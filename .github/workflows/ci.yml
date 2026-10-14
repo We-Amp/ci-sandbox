@@ -1,0 +1,14 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ['v*']
+permissions:
+  contents: read
+jobs:
+  pipeline:
+    uses: We-Amp/ci-sandbox/.github/workflows/pipeline.yml@main
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    uses: We-Amp/ci-sandbox/.github/workflows/release.yml@main

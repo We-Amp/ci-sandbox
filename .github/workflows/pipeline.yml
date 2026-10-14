@@ -1,0 +1,16 @@
+name: pipeline
+on:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  build:
+    # Fork and Dependabot pull requests never reach the fleet: the choice is made
+    # from the event payload at this ref, which a pull request cannot edit.
+    runs-on: ${{ (github.event_name == 'pull_request' && (github.event.pull_request.head.repo.fork == true || github.actor == 'dependabot[bot]')) && 'ubuntu-latest' || 'sandbox-fleet' }}
+    steps:
+      - name: Where am I
+        run: |
+          echo "event=${{ github.event_name }} fork=${{ github.event.pull_request.head.repo.fork }} actor=${{ github.actor }}"
+          echo "runner=${{ runner.name }} os=${{ runner.os }} arch=${{ runner.arch }}"
+          uname -a
