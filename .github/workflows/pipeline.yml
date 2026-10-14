@@ -7,7 +7,7 @@ jobs:
   build:
     # Fork and Dependabot pull requests never reach the fleet: the choice is made
     # from the event payload at this ref, which a pull request cannot edit.
-    runs-on: ${{ (github.event_name == 'pull_request' && (github.event.pull_request.head.repo.fork == true || github.actor == 'dependabot[bot]')) && 'ubuntu-latest' || 'sandbox-fleet' }}
+    runs-on: sandbox-fleet
     steps:
       - name: Where am I
         run: |
